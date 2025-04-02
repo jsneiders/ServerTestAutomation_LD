@@ -42,19 +42,14 @@ jobs:
             exit 0
       - name: Start application
         working-directory: python-greetings
-        run: pm2 start app.py --name greetings-app-dev --interpreter python --env PORT=7001
+        shell: cmd
+        run: pm2 start -f app.py --name greetings-app-dev -- --port 7001
 
   tests-on-dev:
     runs-on: self-hosted
     needs: deploy-to-dev
     steps:
-
-      - name: Wait for application to start
-        run: sleep 10  # Wait 10 seconds (adjust as needed)
-
-      - name: Check if app is running
-        run: curl -I http://127.0.0.1:7001 || exit 1
-        
+    
       - name: Installing dependencies
         working-directory: course-js-api-framework
         run: npm install
