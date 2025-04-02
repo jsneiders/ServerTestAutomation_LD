@@ -40,7 +40,7 @@ jobs:
           path: python-greetings
 
       - name: Stop existing service
-        run: pm2 delete "greetings-app-dev" && set "errorlevel=0" 
+        run: pm2 delete "greetings-app-dev" ; set "errorlevel=0" 
       - name: Start application
         run: pm2 start -n "greetings-app-dev" app.py -- 7001
 
@@ -76,7 +76,7 @@ jobs:
           path: python-greetings
 
       - name: Stop existing service
-        run: pm2 delete "greetings-app-staging" && set "errorlevel=0" 
+        run: pm2 delete "greetings-app-staging" ; set "errorlevel=0" 
       - name: Start application
         run: pm2 start -n "greetings-app-staging" app.py -- 7002
 
@@ -112,7 +112,7 @@ jobs:
           path: python-greetings
 
       - name: Stop existing service
-        run: pm2 delete "greetings-app-preprod" && set "errorlevel=0" 
+        run: pm2 delete "greetings-app-preprod" ; set "errorlevel=0" 
       - name: Start application
         run: pm2 start -n "greetings-app-preprod" app.py -- 7003
 
@@ -148,7 +148,7 @@ jobs:
           path: python-greetings
 
       - name: Stop existing service
-        run: pm2 delete "greetings-app-prod" && set "errorlevel=0" 
+        run: pm2 delete "greetings-app-prod" ; set "errorlevel=0" 
       - name: Start application
         run: pm2 start -n "greetings-app-prod" app.py -- 7004
 
