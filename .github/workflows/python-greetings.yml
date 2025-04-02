@@ -37,7 +37,9 @@ jobs:
         working-directory: python-greetings
         shell: cmd
         run: | 
-            pm2 delete "greetings-app-dev" & set "errorlevel=0"
+            pm2 delete "greetings-app-dev"
+            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
+            exit 0
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -52,7 +54,6 @@ jobs:
         run: npm install
       - name: Running test
         working-directory: course-js-api-framework
-        shell: cmd
         run: npm run greetings greetings_dev
         
   deploy-to-staging:
