@@ -63,6 +63,7 @@ jobs:
           path: course-js-api-framework
 
       - name: Installing dependencies
+        working-directory: course-js-api-framework
         run: npm install
       - name: Running test
         working-directory: course-js-api-framework
