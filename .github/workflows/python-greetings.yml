@@ -35,8 +35,9 @@ jobs:
     steps:
       - name: Stop existing service
         working-directory: python-greetings
+        shell: cmd
         run: | 
-            pm2 delete "greetings-app-dev" | set "errorlevel=0"
+            pm2 delete "greetings-app-dev" & set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -60,7 +61,7 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-staging" | set "errorlevel=0"
+            pm2 delete "greetings-app-staging" & set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -84,7 +85,7 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-preprod" | set "errorlevel=0"
+            pm2 delete "greetings-app-preprod" & set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -108,7 +109,7 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-prod" | set "errorlevel=0"
+            pm2 delete "greetings-app-prod" & set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
