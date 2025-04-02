@@ -65,6 +65,7 @@ jobs:
       - name: Installing dependencies
         run: npm install
       - name: Running test
+        working-directory: course-js-api-framework
         run: npm run greetings greetings_dev
         
   deploy-to-staging:
