@@ -35,7 +35,6 @@ jobs:
     steps:
       - name: Stop existing service
         working-directory: python-greetings
-        shell: cmd
         run: | 
             pm2 delete "greetings-app-dev"
             if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
