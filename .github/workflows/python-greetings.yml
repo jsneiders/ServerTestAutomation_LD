@@ -27,7 +27,7 @@ jobs:
         working-directory: python-greetings
         run: |
           echo "Starting dependency installation..."
-          pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
   deploy-to-dev:
     runs-on: self-hosted
@@ -62,7 +62,9 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-staging" & set "errorlevel=0"
+            pm2 delete "greetings-app-staging"
+            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
+            exit 0
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -77,7 +79,6 @@ jobs:
         run: npm install
       - name: Running test
         working-directory: course-js-api-framework
-        shell: cmd
         run: npm run greetings greetings_stg
 
   deploy-to-preprod:
@@ -87,7 +88,9 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-preprod" & set "errorlevel=0"
+            pm2 delete "greetings-app-preprod"
+            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
+            exit 0
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -102,7 +105,6 @@ jobs:
         run: npm install
       - name: Running test
         working-directory: course-js-api-framework
-        shell: cmd
         run: npm run greetings greetings_preprod
 
   deploy-to-prod:
@@ -112,7 +114,9 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-prod" & set "errorlevel=0"
+            pm2 delete "greetings-app-prod"
+            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
+            exit 0 
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -127,5 +131,4 @@ jobs:
         run: npm install
       - name: Running test
         working-directory: course-js-api-framework
-        shell: cmd
         run: npm run greetings greetings_prod
