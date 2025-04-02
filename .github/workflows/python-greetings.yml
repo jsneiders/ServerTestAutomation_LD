@@ -51,7 +51,7 @@ jobs:
         run: npm install
       - name: Running test
         working-directory: course-js-api-framework
-        run: npm run greetings greetings_dev
+        run: npm run greetings greetings-app-dev
         
   deploy-to-staging:
     runs-on: self-hosted
@@ -60,9 +60,7 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-staging"
-            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
-            exit 0
+            pm2 delete "greetings-app-staging" | set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -86,9 +84,7 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-preprod"
-            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
-            exit 0
+            pm2 delete "greetings-app-preprod" | set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
@@ -112,9 +108,7 @@ jobs:
       - name: Stop existing service
         working-directory: python-greetings
         run: | 
-            pm2 delete "greetings-app-prod"
-            if ($?) { Write-Host "Service stopped successfully" } else { Write-Host "Service not found, continuing..." }
-            exit 0 
+            pm2 delete "greetings-app-prod" | set "errorlevel=0"
       - name: Start application
         working-directory: python-greetings
         shell: cmd
